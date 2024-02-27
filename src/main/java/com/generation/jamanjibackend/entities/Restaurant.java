@@ -51,5 +51,5 @@ public class Restaurant {
 
     @JsonIgnore
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
-    private Set<Delivery> deviveries;
+    private Set<Delivery> deliveries;
 }
