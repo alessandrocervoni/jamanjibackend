@@ -1,4 +1,4 @@
-package com.generation.jamanji.entities;
+package com.generation.jamanjibackend.entities;
 
 import java.util.List;
 import java.util.Set;

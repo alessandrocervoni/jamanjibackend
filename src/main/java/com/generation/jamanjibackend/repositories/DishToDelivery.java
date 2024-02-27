@@ -1,4 +1,4 @@
-package com.generation.jamanji.repositories;
+package com.generation.jamanjibackend.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

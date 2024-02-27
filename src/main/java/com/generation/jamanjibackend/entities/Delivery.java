@@ -1,4 +1,4 @@
-package com.generation.jamanji.entities;
+package com.generation.jamanjibackend.entities;
 
 import java.time.LocalDate;
 import java.util.List;
