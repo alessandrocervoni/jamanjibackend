@@ -34,4 +34,15 @@ public class MenuController {
         return mConv.menuToDtoDishCat(m);
 
     }
+
+    @GetMapping("/menu/{r_id}/dishes")
+    public MenuDtoDishes getMenuWDishes(@PathVariable Integer r_id){
+        Restaurant r = rRepo.findById(r_id).get();
+        int m_id = r.getMenu().getId();
+
+        Menu m = mRepo.findById(m_id).get();
+        return mConv.menuToDtoDishCat(m);
+
+    }
+
 }
