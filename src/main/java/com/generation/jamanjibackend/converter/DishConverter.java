@@ -5,20 +5,21 @@ import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
-import com.generation.jamanjibackend.dto.dish.DishDtoCategory;
+import com.generation.jamanjibackend.dto.dish.DishDtoCategoryName;
 import com.generation.jamanjibackend.entities.Dish;
 
 @Service
 public class DishConverter {
 
-    public Set<DishDtoCategory> dishDtoCatToDish(Set<Dish> dishSet){
+    public Set<DishDtoCategoryName> dishDtoCatToDish(Set<Dish> dishSet){
 
-        Set<DishDtoCategory> dishCatSet = new HashSet<DishDtoCategory>();
+        Set<DishDtoCategoryName> dishCatSet = new HashSet<DishDtoCategoryName>();
         for(Dish d : dishSet){
             
-            dishCatSet.add(DishDtoCategory
+            dishCatSet.add(DishDtoCategoryName
             .builder()
             .category(d.getCategory())
+            .name(d.getName())
             .build());
         }
         return dishCatSet;
