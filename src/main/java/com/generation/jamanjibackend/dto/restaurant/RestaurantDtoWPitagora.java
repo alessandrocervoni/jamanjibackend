@@ -17,6 +17,7 @@ import lombok.Setter;
 
 public class RestaurantDtoWPitagora {
     
+    private int id;
     private String name;
     private String imgUrl;
     private String isOpen;
