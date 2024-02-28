@@ -9,7 +9,8 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-public class DishtodeliveryDtoBase {
 
-    private int quantity;
+public class DishtodeliveryDtoR extends DishtodeliveryDtoBase{
+
+    private Integer id;
 }
