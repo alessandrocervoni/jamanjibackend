@@ -19,7 +19,7 @@ public class RestaurantDtoWPitagora {
     
     private String name;
     private String imgUrl;
-    private boolean isOpen;
+    private String isOpen;
     private List<String> foodTypes;
     private double distance;
 

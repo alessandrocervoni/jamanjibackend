@@ -2,7 +2,6 @@ package com.generation.jamanjibackend.entities;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -93,7 +92,7 @@ public class Restaurant {
         } else {
             System.out.println("Non ci sono deliveries, non posso calcolare la distanza!");
         }
-
-        return ipotenusa;
+        
+        return Math.round(ipotenusa * 100);
     } 
 }
