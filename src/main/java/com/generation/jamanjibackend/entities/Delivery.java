@@ -1,7 +1,7 @@
 package com.generation.jamanjibackend.entities;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -15,14 +15,19 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Data
+@Getter
+@Setter
 @Entity
+@ToString
+
 
 public class Delivery {
 
@@ -40,13 +45,15 @@ public class Delivery {
     private User user;
 
     @JsonIgnore
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
     @JsonIgnore
+    @ToString.Exclude
     @OneToMany(mappedBy = "delivery",fetch = FetchType.EAGER)
-    private List<DishToDelivery> dishesDeliveries;
+    private Set<DishToDelivery> dishesDeliveries;
 
 
     public double getDishesPrices(){

@@ -1,8 +1,5 @@
 package com.generation.jamanjibackend.entities;
 
-
-
-import java.util.List;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,7 +13,7 @@ import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
@@ -37,6 +34,7 @@ public class User
 
 
     @JsonIgnore
+    @ToString.Exclude
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Delivery> deliveries;
     
