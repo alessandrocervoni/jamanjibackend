@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.generation.jamanjibackend.converter.MenuConverter;
+import com.generation.jamanjibackend.dto.menu.MenuDtoDishes;
 import com.generation.jamanjibackend.dto.menu.MenuDtoDishesCateg;
 import com.generation.jamanjibackend.entities.Menu;
 import com.generation.jamanjibackend.entities.Restaurant;
@@ -41,7 +42,7 @@ public class MenuController {
         int m_id = r.getMenu().getId();
 
         Menu m = mRepo.findById(m_id).get();
-        return mConv.menuToDtoDishCat(m);
+        return mConv.menuToDtoDish(m);
 
     }
 
