@@ -1,5 +1,8 @@
 package com.generation.jamanjibackend.entities;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -54,4 +57,43 @@ public class Restaurant {
     @JsonIgnore
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
     private Set<Delivery> deliveries;
+
+    public boolean isOpen() {
+            LocalDateTime now = LocalDateTime.now();
+            int currentHour = now.getHour();
+            int currentMinute = now.getMinute();
+        
+            if (closingHour < openingHour) {
+                // Se l'orario di chiusura è prima di quello di apertura,
+                // consideriamo che l'attività sia aperta dalle openingHour fino alla mezzanotte
+                // e da mezzanotte fino all'orario di chiusura
+                return (currentHour > openingHour || (currentHour == openingHour && currentMinute >= 0)) ||
+                       (currentHour < closingHour || (currentHour == closingHour && currentMinute < 0));
+            } else {
+                // Altrimenti, l'attività è aperta semplicemente tra l'orario di apertura e chiusura
+                return currentHour > openingHour && currentHour < closingHour ||
+                       (currentHour == openingHour && currentMinute >= 0) ||
+                       (currentHour == closingHour && currentMinute < 0);
+            }
+        }
+
+    public double distance () {
+        List<Delivery> deliveriesList = new ArrayList<Delivery>(deliveries);
+        Delivery d = deliveriesList.get(0);
+        double ipotenusa = 0;
+        if (d!=null) {
+            User u = d.getUser(); //BELLA LI'
+            int x1 = u.getPositionX();
+            int y1 = u.getPositionY();
+
+            double base = x1-positionX;
+            double altezza = y1-positionY;
+            ipotenusa = Math.sqrt(Math.pow(base,2)+Math.pow(altezza,2));
+            
+        } else {
+            System.out.println("Non ci sono deliveries, non posso calcolare la distanza!");
+        }
+
+        return ipotenusa;
+    } 
 }
