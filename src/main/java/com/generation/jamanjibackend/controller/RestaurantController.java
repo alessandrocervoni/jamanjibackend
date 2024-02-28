@@ -29,8 +29,5 @@ public class RestaurantController {
                 .toList();
         
     }
-
    
-    //restaurant_id manda dish con nome e category ("/restaurants/{r_id}/dishes")
-
 }

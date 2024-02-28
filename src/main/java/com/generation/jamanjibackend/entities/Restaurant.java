@@ -58,24 +58,24 @@ public class Restaurant {
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
     private Set<Delivery> deliveries;
 
-    public boolean isOpen() {
-            LocalDateTime now = LocalDateTime.now();
-            int currentHour = now.getHour();
-            int currentMinute = now.getMinute();
-        
-            if (closingHour < openingHour) {
-                // Se l'orario di chiusura è prima di quello di apertura,
-                // consideriamo che l'attività sia aperta dalle openingHour fino alla mezzanotte
-                // e da mezzanotte fino all'orario di chiusura
-                return (currentHour > openingHour || (currentHour == openingHour && currentMinute >= 0)) ||
-                       (currentHour < closingHour || (currentHour == closingHour && currentMinute < 0));
-            } else {
-                // Altrimenti, l'attività è aperta semplicemente tra l'orario di apertura e chiusura
-                return currentHour > openingHour && currentHour < closingHour ||
-                       (currentHour == openingHour && currentMinute >= 0) ||
-                       (currentHour == closingHour && currentMinute < 0);
-            }
+    public String isOpen() {
+        LocalDateTime now = LocalDateTime.now();
+        int currentHour = now.getHour();
+        int currentMinute = now.getMinute();
+    
+        boolean isOpen;
+    
+        if (closingHour < openingHour) {
+            isOpen = (currentHour > openingHour || (currentHour == openingHour && currentMinute >= 0)) ||
+                   (currentHour < closingHour || (currentHour == closingHour && currentMinute < 0));
+        } else {
+            isOpen = currentHour > openingHour && currentHour < closingHour ||
+                   (currentHour == openingHour && currentMinute >= 0) ||
+                   (currentHour == closingHour && currentMinute < 0);
         }
+    
+        return isOpen ? "Aperto" : "Chiuso";
+    }
 
     public double distance () {
         List<Delivery> deliveriesList = new ArrayList<Delivery>(deliveries);
