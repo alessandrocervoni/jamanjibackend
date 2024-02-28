@@ -1,8 +1,11 @@
 package com.generation.jamanjibackend.converter;
 
+import org.springframework.stereotype.Service;
+
 import com.generation.jamanjibackend.dto.user.UserDtoWFull;
 import com.generation.jamanjibackend.entities.User;
 
+@Service
 public class UserConverter {
 
     public UserDtoWFull userDtoWFull(User u)
@@ -17,4 +20,5 @@ public class UserConverter {
                 .deliveries(u.getDeliveries())
                 .build();
     }
+
 }
