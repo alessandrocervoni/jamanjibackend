@@ -2,7 +2,7 @@ package com.generation.jamanjibackend.dto.menu;
 
 import java.util.Set;
 
-import com.generation.jamanjibackend.dto.dish.DishDtoCategory;
+import com.generation.jamanjibackend.dto.dish.DishDtoCategoryName;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,5 +15,5 @@ import lombok.NoArgsConstructor;
 @Builder
 
 public class MenuDtoDishesCateg {
-    private Set<DishDtoCategory> dishes;
+    private Set<DishDtoCategoryName> dishes;
 }

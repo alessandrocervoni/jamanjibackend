@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 
-public class DishDtoCategory {
+public class DishDtoCategoryName {
     private String category;
+    private String name;
 }
