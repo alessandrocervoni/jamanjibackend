@@ -11,12 +11,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.generation.jamanjibackend.converter.DeliveryConverter;
+import com.generation.jamanjibackend.dto.delivery.DeliveryDtoNew;
 import com.generation.jamanjibackend.entities.Delivery;
 import com.generation.jamanjibackend.entities.Dish;
 import com.generation.jamanjibackend.entities.DishToDelivery;
 import com.generation.jamanjibackend.repositories.DeliveryRepository;
 import com.generation.jamanjibackend.repositories.DishRepository;
 import com.generation.jamanjibackend.repositories.DishToDeliveryRepository;
+import com.generation.jamanjibackend.repositories.RestaurantRepository;
+import com.generation.jamanjibackend.repositories.UserRepository;
 
 @RestController
 public class DishController {
@@ -30,11 +34,22 @@ public class DishController {
     @Autowired
     DishToDeliveryRepository dtRepo;
 
+    @Autowired 
+    UserRepository uRepo;
+
+    @Autowired
+    RestaurantRepository rRepo;
+
+    @Autowired
+    DeliveryConverter dConv;
+
 
     @GetMapping("/createDelivery/{user_id}/{rest_id}")
-    public Delivery createDel (@PathVariable Integer user_id, @PathVariable Integer rest_id ) {
+    public DeliveryDtoNew createDel (@PathVariable Integer user_id, @PathVariable Integer rest_id ) {
         Delivery carrello = new Delivery();
-        return carrello;
+        carrello.setUser(uRepo.findById(user_id).get());
+        carrello.setRestaurant(rRepo.findById(rest_id).get());
+        return dConv.deliveryToDtoNew(carrello);
     }
     
     @PutMapping("/dishes/adding/{dish_id}/{del_id}")
