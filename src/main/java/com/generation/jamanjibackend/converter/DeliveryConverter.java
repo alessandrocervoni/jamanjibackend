@@ -11,6 +11,7 @@ public class DeliveryConverter {
 
         return  DeliveryDtoNew
                 .builder()
+                .id(d.getId())
                 .expected_arrival(d.getExpected_arrival())
                 .distance(d.getDistance())
                 .paymentMethod(d.getPaymentMethod())

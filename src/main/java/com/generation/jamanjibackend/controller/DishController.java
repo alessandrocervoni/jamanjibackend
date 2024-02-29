@@ -49,6 +49,7 @@ public class DishController {
         Delivery carrello = new Delivery();
         carrello.setUser(uRepo.findById(user_id).get());
         carrello.setRestaurant(rRepo.findById(rest_id).get());
+        deRepo.save(carrello);
         return dConv.deliveryToDtoNew(carrello);
     }
     
