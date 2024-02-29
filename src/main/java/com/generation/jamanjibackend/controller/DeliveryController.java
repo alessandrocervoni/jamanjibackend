@@ -32,7 +32,7 @@ public class DeliveryController {
             return new ResponseEntity<String>("No delivery with id " + del_id, HttpStatus.NOT_FOUND);
         }
      
-        Delivery newVersion = dConv.dtoRPut(dto);
+        Delivery newVersion = dConv.dtoRPut(dto,op.get());
 
         dRepo.save(newVersion);
 

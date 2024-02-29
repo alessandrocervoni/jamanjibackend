@@ -22,6 +22,5 @@ public class RestaurantDtoWPitagora {
     private String imgUrl;
     private String isOpen;
     private List<String> foodTypes;
-    private double distance;
 
 }

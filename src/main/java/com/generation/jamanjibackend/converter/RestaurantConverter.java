@@ -18,7 +18,6 @@ public class RestaurantConverter {
                 .imgUrl(r.getImgUrl())
                 .isOpen(r.isOpen())
                 .foodTypes(r.getFoodTypes())
-                .distance(r.distance())
                 .build();
     }
 
@@ -38,7 +37,6 @@ public class RestaurantConverter {
                 .imgUrl(r.getImgUrl())
                 .isOpen(r.isOpen())
                 .foodTypes(r.getFoodTypes())
-                .distance(r.distance())
                 .menu(r.getMenu())
                 .build();
     }

@@ -26,13 +26,11 @@ public class DeliveryConverter {
                 .build();
     }
 
-    public Delivery dtoRPut (DeliveryRArrivalNotes dto){
+    public Delivery dtoRPut (DeliveryRArrivalNotes dto, Delivery oldVersion){
 
-        return  Delivery
-                .builder()
-                .id(dto.getId())
-                .expected_arrival(dto.getExpected_arrival())
-                .notes(dto.getNotes())
-                .build();
+       oldVersion.setExpected_arrival(dto.getExpected_arrival());
+       oldVersion.setNotes(dto.getNotes());
+
+       return oldVersion;
     }
 }
