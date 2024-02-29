@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 
 public class DishDtoCategoryName {
+    private Integer id;
     private String category;
     private String name;
 }
