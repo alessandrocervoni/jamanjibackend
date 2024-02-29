@@ -35,14 +35,14 @@ public class RestaurantController {
     }
 
     @GetMapping("/restaurant/{id}")
-    public RestaurantDtoWPitagora getOneNoPadron(@PathVariable Integer id)
+    public RestaurantDtoWFull getOneNoPadron(@PathVariable Integer id)
     {
         Optional<Restaurant> op = rRepo.findById(id);
 
         if(op.isEmpty())
             return null;
 
-        return rConv.RestToDtoPit(op.get());
+        return rConv.RestoToDtoFull(op.get());
 
     }
    

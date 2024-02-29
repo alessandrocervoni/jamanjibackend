@@ -1,5 +1,6 @@
 package com.generation.jamanjibackend.entities;
 
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 @Entity
+
 public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,6 +79,8 @@ public class Restaurant {
     }
 
     public double distance () {
+        DecimalFormat df = new DecimalFormat("#.##");
+        df.setRoundingMode(java.math.RoundingMode.HALF_UP);
         List<Delivery> deliveriesList = new ArrayList<Delivery>(deliveries);
         Delivery d = deliveriesList.get(0);
         double ipotenusa = 0;
@@ -92,7 +96,6 @@ public class Restaurant {
         } else {
             System.out.println("Non ci sono deliveries, non posso calcolare la distanza!");
         }
-        
-        return Math.round(ipotenusa * 100);
+        return Math.round(ipotenusa * 100.0) / 100.0;
     } 
 }
