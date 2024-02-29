@@ -51,8 +51,7 @@ public class Restaurant {
     private String imgUrl;
     
     @JsonIgnore
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "menu_id")//1-1
+    @OneToOne(mappedBy = "restaurant", fetch = FetchType.EAGER)
     private Menu menu;
 
     @JsonIgnore
