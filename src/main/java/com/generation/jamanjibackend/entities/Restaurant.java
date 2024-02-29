@@ -77,24 +77,5 @@ public class Restaurant {
         return isOpen ? "Aperto" : "Chiuso";
     }
 
-    public double distance () {
-        DecimalFormat df = new DecimalFormat("#.##");
-        df.setRoundingMode(java.math.RoundingMode.HALF_UP);
-        List<Delivery> deliveriesList = new ArrayList<Delivery>(deliveries);
-        Delivery d = deliveriesList.get(0);
-        double ipotenusa = 0;
-        if (d!=null) {
-            User u = d.getUser(); //BELLA LI'
-            int x1 = u.getPositionX();
-            int y1 = u.getPositionY();
-
-            double base = x1-positionX;
-            double altezza = y1-positionY;
-            ipotenusa = Math.sqrt(Math.pow(base,2)+Math.pow(altezza,2));
-            
-        } else {
-            System.out.println("Non ci sono deliveries, non posso calcolare la distanza!");
-        }
-        return Math.round(ipotenusa * 100.0) / 100.0;
-    } 
+    
 }
