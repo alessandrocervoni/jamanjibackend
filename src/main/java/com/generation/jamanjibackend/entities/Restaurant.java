@@ -1,8 +1,6 @@
 package com.generation.jamanjibackend.entities;
 
-import java.text.DecimalFormat;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 

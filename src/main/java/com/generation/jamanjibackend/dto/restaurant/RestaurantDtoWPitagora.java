@@ -4,18 +4,18 @@ package com.generation.jamanjibackend.dto.restaurant;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@SuperBuilder
 
-public class RestaurantDtoWPitagora {
+public class RestaurantDtoWPitagora extends RestaurantDtoBase{
     
     private int id;
     private String name;
