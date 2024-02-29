@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 
 public class DishDtoCategoryName {
     private Integer id;
+    private double price;
     private String category;
     private String name;
 }
