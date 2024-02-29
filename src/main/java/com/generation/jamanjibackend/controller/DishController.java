@@ -54,21 +54,45 @@ public class DishController {
     }
     
     @PutMapping("/dishes/adding/{dish_id}/{del_id}")
-    public ResponseEntity<?> accept(@PathVariable Integer dish_id, @PathVariable Integer del_id){
-        Optional<Dish> op = dRepo.findById(dish_id);
-
-        if(op.isPresent()){
-
-            Dish d = op.get();
-            Set<DishToDelivery> deliveries = d.getDeliveries();
-            for (DishToDelivery dt : deliveries){
-                dt.setDelivery(deRepo.findById(del_id).get());
-                return new ResponseEntity<DishToDelivery>(dtRepo.save(dt),HttpStatus.OK);
-            }
-            return new ResponseEntity<String>("No delivery with id "+del_id,HttpStatus.NOT_FOUND);
+    public ResponseEntity<?> accept(@PathVariable Integer dish_id, @PathVariable Integer del_id) {
+        Delivery carrello = deRepo.findById(del_id).get();
+        if (carrello == null) {
+            return new ResponseEntity<String>("No delivery with id " + del_id, HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<String>("No dish with id "+dish_id,HttpStatus.NOT_FOUND);
+    
+        Optional<Dish> opDish = dRepo.findById(dish_id);
+        if (opDish.isPresent()) {
+            Dish dish = opDish.get();
+            Set<DishToDelivery> ordini = carrello.getDishesDeliveries();
+            
+            // Cerca se il DishToDelivery esiste già nell'ordine
+            boolean found = false;
+            for (DishToDelivery dt : ordini) {
+                if (dt.getDish().getId().equals(dish.getId())) {
+                    int quantity = dt.getQuantity();
+                    quantity += 1;
+                    dt.setQuantity(quantity);
+                    dtRepo.save(dt);
+                    found = true;
+                    break;
+                }
+            }
+    
+            // Se non è stato trovato un DishToDelivery corrispondente, crea uno nuovo
+            if (!found) {
+                DishToDelivery newOrdine = new DishToDelivery();
+                newOrdine.setDish(dish);
+                newOrdine.setDelivery(carrello);
+                ordini.add(newOrdine);
+                dtRepo.save(newOrdine);
+            }
+    
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<String>("No dish with id " + dish_id, HttpStatus.NOT_FOUND);
+        }
     }
+
 
     @PutMapping("/dishes/deleting/{dish_id}")
     public ResponseEntity<?> delete(@PathVariable Integer dish_id){
