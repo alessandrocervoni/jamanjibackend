@@ -18,6 +18,7 @@ public class DishConverter {
             
             dishCatSet.add(DishDtoCategoryName
             .builder()
+            .id(d.getId())
             .category(d.getCategory())
             .name(d.getName())
             .build());
