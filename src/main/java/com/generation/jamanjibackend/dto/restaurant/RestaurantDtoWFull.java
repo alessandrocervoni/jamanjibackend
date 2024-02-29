@@ -20,6 +20,5 @@ public class RestaurantDtoWFull extends RestaurantDtoBase{
     private Menu menu;
     private List<String> foodTypes;
     private String isOpen;
-    private double distance;
 
 }

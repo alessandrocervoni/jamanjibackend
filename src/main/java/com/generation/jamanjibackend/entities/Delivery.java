@@ -1,6 +1,6 @@
 package com.generation.jamanjibackend.entities;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -34,7 +34,7 @@ public class Delivery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private LocalDate expected_arrival;
+    private LocalDateTime expected_arrival;
     private int distance;
     private String paymentMethod;
     private String notes;
@@ -75,4 +75,28 @@ public class Delivery {
     public double getTotalPrice(){
         return getDishesPrices() + getRiderRevenue();
     }
+
+    public int getDistance () {
+        if(distance == 0){
+
+            double ipotenusa = 0;
+        
+            User u = getUser(); //BELLA LI'
+            int x1 = u.getPositionX();
+            int y1 = u.getPositionY();
+
+            Restaurant r = getRestaurant();
+            int x2 = r.getPositionX();
+            int y2 = r.getPositionY();
+
+            double base = x1-x2;
+            double altezza = y1-y2;
+            ipotenusa = Math.sqrt(Math.pow(base,2)+Math.pow(altezza,2));
+        
+            distance = (int)ipotenusa;
+        }
+    
+            return distance;
+    } 
+
 }

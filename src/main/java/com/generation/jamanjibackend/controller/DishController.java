@@ -6,6 +6,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -49,6 +50,7 @@ public class DishController {
         Delivery carrello = new Delivery();
         carrello.setUser(uRepo.findById(user_id).get());
         carrello.setRestaurant(rRepo.findById(rest_id).get());
+        carrello.getDistance();
         deRepo.save(carrello);
         return dConv.deliveryToDtoNew(carrello);
     }
@@ -94,19 +96,45 @@ public class DishController {
     }
 
 
-    @PutMapping("/dishes/deleting/{dish_id}")
-    public ResponseEntity<?> delete(@PathVariable Integer dish_id){
-        Optional<Dish> op = dRepo.findById(dish_id);
-
-        if(op.isPresent()){
-
-            Dish d = op.get();
-            Set<DishToDelivery> deliveries = d.getDeliveries();
-            for (DishToDelivery dt : deliveries){
-                dtRepo.deleteById(dt.getId());
-            }
+    @DeleteMapping("/dishes/deleting/{dish_id}/{del_id}")
+    public ResponseEntity<?> delete(@PathVariable Integer dish_id, @PathVariable Integer del_id){
+        Delivery carrello = deRepo.findById(del_id).get();
+        if (carrello == null) {
+            return new ResponseEntity<String>("No delivery with id " + del_id, HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<String>("No dish with id "+dish_id,HttpStatus.NOT_FOUND);
+    
+        Optional<Dish> opDish = dRepo.findById(dish_id);
+        if (opDish.isPresent()) {
+            Dish dish = opDish.get();
+            Set<DishToDelivery> ordini = carrello.getDishesDeliveries();
+            
+            // Cerca se il DishToDelivery esiste già nell'ordine
+            boolean found = false;
+            for (DishToDelivery dt : ordini) {
+                if (dt.getDish().getId().equals(dish.getId())) {
+                    int quantity = dt.getQuantity();
+                    if(quantity>0){
+                        quantity -= 1;
+                        dt.setQuantity(quantity);
+                        dtRepo.save(dt);
+                        found = true;
+                    }
+                    if(quantity==0){
+                        dtRepo.delete(dt);
+                    }
+                }
+            }
+    
+            // Se non è stato trovato un DishToDelivery corrispondente
+            if (!found) {
+                return new ResponseEntity<String>("No dishToDelivery with id " + dish_id, HttpStatus.NOT_FOUND);
+            }
+    
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<String>("No dish with id " + dish_id, HttpStatus.NOT_FOUND);
+        }
     }
+
 
 }

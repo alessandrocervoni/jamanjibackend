@@ -26,7 +26,6 @@ class TestJ {
         // System.out.println(rOpen.isOpen()+ " "+ rClosed.isOpen());
 
         Restaurant r = rRepo.findById(1).get();
-        double distance = r.distance();
     }
 
 

@@ -3,6 +3,7 @@ package com.generation.jamanjibackend.converter;
 import org.springframework.stereotype.Service;
 
 import com.generation.jamanjibackend.dto.delivery.DeliveryDtoNew;
+import com.generation.jamanjibackend.dto.delivery.DeliveryRArrivalNotes;
 import com.generation.jamanjibackend.entities.Delivery;
 
 @Service
@@ -23,5 +24,13 @@ public class DeliveryConverter {
                 .getRiderRevenue(d.getRiderRevenue())
                 .getTotalPrice(d.getTotalPrice())
                 .build();
+    }
+
+    public Delivery dtoRPut (DeliveryRArrivalNotes dto, Delivery oldVersion){
+
+       oldVersion.setExpected_arrival(dto.getExpected_arrival());
+       oldVersion.setNotes(dto.getNotes());
+
+       return oldVersion;
     }
 }
