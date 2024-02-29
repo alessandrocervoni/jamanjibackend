@@ -34,6 +34,8 @@ public class RestaurantController {
         
     }
 
+    
+
     @GetMapping("/restaurant/{id}")
     public RestaurantDtoWFull getOneNoPadron(@PathVariable Integer id)
     {
