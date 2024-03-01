@@ -21,9 +21,9 @@ public class DeliveryConverter {
                 .user(d.getUser())
                 .restaurant(d.getRestaurant())
                 .dishesDeliveries(d.getDishesDeliveries())
-                .getDishesPrices(d.getDishesPrices())
-                .getRiderRevenue(d.getRiderRevenue())
-                .getTotalPrice(d.getTotalPrice())
+                .dishesPrices(d.getDishesPrices())
+                .riderRevenue(d.getRiderRevenue())
+                .totalPrice(d.getTotalPrice())
                 .build();
     }
 
@@ -39,9 +39,9 @@ public class DeliveryConverter {
                 .user(d.getUser())
                 .restaurant(d.getRestaurant())
                 .dishesDeliveries(d.getDishesDeliveries())
-                .getDishesPrices(d.getDishesPrices())
-                .getRiderRevenue(d.getRiderRevenue())
-                .getTotalPrice(d.getTotalPrice())
+                .dishesPrices(d.getDishesPrices())
+                .riderRevenue(d.getRiderRevenue())
+                .totalPrice(d.getTotalPrice())
                 .build();
     }
 
