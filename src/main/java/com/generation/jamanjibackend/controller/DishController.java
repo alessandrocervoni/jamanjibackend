@@ -100,10 +100,10 @@ public class DishController {
 
 
     @DeleteMapping("/dishes/deleting/{dish_id}/{del_id}")
-    public ResponseEntity<?> delete(@PathVariable Integer dish_id, @PathVariable Integer del_id){
+    public DeliveryDtoWFull delete(@PathVariable Integer dish_id, @PathVariable Integer del_id){
         Delivery carrello = deRepo.findById(del_id).get();
         if (carrello == null) {
-            return new ResponseEntity<String>("No delivery with id " + del_id, HttpStatus.NOT_FOUND);
+            new ResponseEntity<String>("No delivery with id " + del_id, HttpStatus.NOT_FOUND);
         }
     
         Optional<Dish> opDish = dRepo.findById(dish_id);
@@ -130,13 +130,14 @@ public class DishController {
     
             // Se non è stato trovato un DishToDelivery corrispondente
             if (!found) {
-                return new ResponseEntity<String>("No dishToDelivery with id " + dish_id, HttpStatus.NOT_FOUND);
+                new ResponseEntity<String>("No dishToDelivery with id " + dish_id, HttpStatus.NOT_FOUND);
             }
     
-            return new ResponseEntity<>(HttpStatus.OK);
         } else {
-            return new ResponseEntity<String>("No dish with id " + dish_id, HttpStatus.NOT_FOUND);
+            new ResponseEntity<String>("No dish with id " + dish_id, HttpStatus.NOT_FOUND);
         }
+
+        return dConv.deliveryToDtoFull(carrello);
     }
 
 
