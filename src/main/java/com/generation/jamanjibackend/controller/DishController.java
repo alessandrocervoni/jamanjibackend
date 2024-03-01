@@ -124,6 +124,7 @@ public class DishController {
                     }
                     if(quantity==0){
                         dtRepo.delete(dt);
+                        ordini.remove(dt);
                     }
                 }
             }
