@@ -1,6 +1,5 @@
 package com.generation.jamanjibackend.controller;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -14,7 +13,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.generation.jamanjibackend.converter.DeliveryConverter;
+import com.generation.jamanjibackend.converter.DishToDeliveryConverter;
 import com.generation.jamanjibackend.dto.delivery.DeliveryDtoNew;
+import com.generation.jamanjibackend.dto.dishtodelivery.DishtodeliveryDtoBase;
 import com.generation.jamanjibackend.entities.Delivery;
 import com.generation.jamanjibackend.entities.Dish;
 import com.generation.jamanjibackend.entities.DishToDelivery;
@@ -45,6 +46,9 @@ public class DishController {
     @Autowired
     DeliveryConverter dConv;
 
+    @Autowired
+    DishToDeliveryConverter dtConv;
+
 
     @GetMapping("/createDelivery/{user_id}/{rest_id}")
     public DeliveryDtoNew createDel (@PathVariable Integer user_id, @PathVariable Integer rest_id ) {
@@ -58,7 +62,7 @@ public class DishController {
     }
     
     @PutMapping("/dishes/adding/{dish_id}/{del_id}")
-    public Set<DishToDelivery> accept(@PathVariable Integer dish_id, @PathVariable Integer del_id) {
+    public Set<DishtodeliveryDtoBase> accept(@PathVariable Integer dish_id, @PathVariable Integer del_id) {
         Delivery carrello = deRepo.findById(del_id).get();
     
         Optional<Dish> opDish = dRepo.findById(dish_id);
@@ -84,14 +88,14 @@ public class DishController {
                 DishToDelivery newOrdine = new DishToDelivery();
                 newOrdine.setDish(dish);
                 newOrdine.setDelivery(carrello);
-                carrello.getDishesDeliveries().add(newOrdine);
                 newOrdine.setQuantity(1);
+                carrello.getDishesDeliveries().add(newOrdine);
                 ordini.add(newOrdine);
                 dtRepo.save(newOrdine);
             }
     
         }
-        return carrello.getDishesDeliveries();
+        return dtConv.dtToDtoBase(carrello.getDishesDeliveries());
     }
 
 
