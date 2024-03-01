@@ -58,10 +58,7 @@ public class Delivery {
 
     public double getDishesPrices(){
         double res = 0;
-        if(dishesDeliveries==null)
-        {
-            return 0;
-        }
+
         for(DishToDelivery d : dishesDeliveries){
             res += d.getPrice()*d.getQuantity();
         }
