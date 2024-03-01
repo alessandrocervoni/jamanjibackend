@@ -21,8 +21,8 @@ public class DeliveryDtoNew extends DeliveryDtoBase{
     private Restaurant restaurant;
     private User user;
     private Set<DishToDelivery> dishesDeliveries;
-    public double getDishesPrices;
-    public double getRiderRevenue;
-    public double getTotalPrice;
+    public double dishesPrices;
+    public double riderRevenue;
+    public double totalPrice;
     
 }

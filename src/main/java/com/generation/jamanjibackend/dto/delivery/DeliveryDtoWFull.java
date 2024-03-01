@@ -22,8 +22,7 @@ public class DeliveryDtoWFull extends DeliveryDtoBase{
     private User user;
     private Restaurant restaurant;
     private Set<DishToDelivery> dishesDeliveries;
-    public double getDishesPrices;
-    public double getRiderRevenue;
-    public double getTotalPrice;
-
+    public double dishesPrices;
+    public double riderRevenue;
+    public double totalPrice;
 }
