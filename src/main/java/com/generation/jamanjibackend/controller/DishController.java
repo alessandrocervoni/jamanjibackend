@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.generation.jamanjibackend.converter.DeliveryConverter;
 import com.generation.jamanjibackend.converter.DishToDeliveryConverter;
 import com.generation.jamanjibackend.dto.delivery.DeliveryDtoNew;
+import com.generation.jamanjibackend.dto.delivery.DeliveryDtoWFull;
 import com.generation.jamanjibackend.dto.dishtodelivery.DishtodeliveryDtoBase;
 import com.generation.jamanjibackend.entities.Delivery;
 import com.generation.jamanjibackend.entities.Dish;
@@ -62,7 +63,7 @@ public class DishController {
     }
     
     @PutMapping("/dishes/adding/{dish_id}/{del_id}")
-    public Set<DishtodeliveryDtoBase> accept(@PathVariable Integer dish_id, @PathVariable Integer del_id) {
+    public DeliveryDtoWFull accept(@PathVariable Integer dish_id, @PathVariable Integer del_id) {
         Delivery carrello = deRepo.findById(del_id).get();
     
         Optional<Dish> opDish = dRepo.findById(dish_id);
@@ -95,7 +96,7 @@ public class DishController {
             }
     
         }
-        return dtConv.dtToDtoBase(carrello.getDishesDeliveries());
+        return dConv.deliveryToDtoFull(carrello);
     }
 
 
