@@ -1,5 +1,6 @@
 package com.generation.jamanjibackend.controller;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -57,11 +58,8 @@ public class DishController {
     }
     
     @PutMapping("/dishes/adding/{dish_id}/{del_id}")
-    public ResponseEntity<?> accept(@PathVariable Integer dish_id, @PathVariable Integer del_id) {
+    public Set<DishToDelivery> accept(@PathVariable Integer dish_id, @PathVariable Integer del_id) {
         Delivery carrello = deRepo.findById(del_id).get();
-        if (carrello == null) {
-            return new ResponseEntity<String>("No delivery with id " + del_id, HttpStatus.NOT_FOUND);
-        }
     
         Optional<Dish> opDish = dRepo.findById(dish_id);
         if (opDish.isPresent()) {
@@ -92,10 +90,8 @@ public class DishController {
                 dtRepo.save(newOrdine);
             }
     
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<String>("No dish with id " + dish_id, HttpStatus.NOT_FOUND);
         }
+        return carrello.getDishesDeliveries();
     }
 
 
