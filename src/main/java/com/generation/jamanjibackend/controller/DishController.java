@@ -16,7 +16,6 @@ import com.generation.jamanjibackend.converter.DeliveryConverter;
 import com.generation.jamanjibackend.converter.DishToDeliveryConverter;
 import com.generation.jamanjibackend.dto.delivery.DeliveryDtoNew;
 import com.generation.jamanjibackend.dto.delivery.DeliveryDtoWFull;
-import com.generation.jamanjibackend.dto.dishtodelivery.DishtodeliveryDtoBase;
 import com.generation.jamanjibackend.entities.Delivery;
 import com.generation.jamanjibackend.entities.Dish;
 import com.generation.jamanjibackend.entities.DishToDelivery;
