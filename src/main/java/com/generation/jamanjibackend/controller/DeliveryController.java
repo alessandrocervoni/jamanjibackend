@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.generation.jamanjibackend.converter.DeliveryConverter;
+import com.generation.jamanjibackend.dto.delivery.DeliveryDtoWFull;
 import com.generation.jamanjibackend.dto.delivery.DeliveryRArrivalNotes;
 import com.generation.jamanjibackend.entities.Delivery;
 import com.generation.jamanjibackend.repositories.DeliveryRepository;
@@ -25,18 +26,20 @@ public class DeliveryController {
     DeliveryConverter dConv;
 
     @PutMapping("/delivery/buy/{del_id}")
-    public ResponseEntity<?> buy(@PathVariable Integer del_id,@RequestBody DeliveryRArrivalNotes dto){
+    public DeliveryDtoWFull buy(@PathVariable Integer del_id,@RequestBody DeliveryRArrivalNotes dto){
         Optional<Delivery> op = dRepo.findById(del_id);
         if (!op.isPresent()) 
         {
-            return new ResponseEntity<String>("No delivery with id " + del_id, HttpStatus.NOT_FOUND);
+            new ResponseEntity<String>("No delivery with id " + del_id, HttpStatus.NOT_FOUND);
         }
      
         Delivery newVersion = dConv.dtoRPut(dto,op.get());
 
         dRepo.save(newVersion);
 
-        return new ResponseEntity<String>("Orario di consegna aggiornato ",HttpStatus.OK);
+        return dConv.deliveryToDtoFull(newVersion);
         
     }
+
+
 }
