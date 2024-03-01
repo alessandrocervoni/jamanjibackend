@@ -51,6 +51,7 @@ public class DishController {
         carrello.setUser(uRepo.findById(user_id).get());
         carrello.setRestaurant(rRepo.findById(rest_id).get());
         carrello.getDistance();
+        carrello.getDishesDeliveries();
         deRepo.save(carrello);
         return dConv.deliveryToDtoNew(carrello);
     }
@@ -85,6 +86,8 @@ public class DishController {
                 DishToDelivery newOrdine = new DishToDelivery();
                 newOrdine.setDish(dish);
                 newOrdine.setDelivery(carrello);
+                carrello.getDishesDeliveries().add(newOrdine);
+                newOrdine.setQuantity(1);
                 ordini.add(newOrdine);
                 dtRepo.save(newOrdine);
             }
