@@ -59,10 +59,8 @@ public class Restaurant {
     private Set<Delivery> deliveries;
 
     @JsonIgnore
-    @ToString.Exclude
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "rider_id")
-    private Rider rider;
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
+    private Set<Rider> riders;
 
     public String isOpen() {
         LocalDateTime now = LocalDateTime.now();
