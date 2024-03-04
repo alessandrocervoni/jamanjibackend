@@ -52,6 +52,12 @@ public class Delivery {
 
     @JsonIgnore
     @ToString.Exclude
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "rider_id")
+    private Rider rider;
+
+    @JsonIgnore
+    @ToString.Exclude
     @OneToMany(mappedBy = "delivery",fetch = FetchType.EAGER)
     private Set<DishToDelivery> dishesDeliveries;
 

@@ -15,6 +15,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
@@ -22,6 +23,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
@@ -55,6 +57,12 @@ public class Restaurant {
     @JsonIgnore
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
     private Set<Delivery> deliveries;
+
+    @JsonIgnore
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "rider_id")
+    private Rider rider;
 
     public String isOpen() {
         LocalDateTime now = LocalDateTime.now();
