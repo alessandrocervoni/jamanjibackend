@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 
 public class DeliveryRArrivalNotes {
     private Integer id;
-    private LocalDateTime deliveryStartTime;
+    private LocalDateTime expected_arrival;
     private String notes;
     private String paymentMethod;
 }
