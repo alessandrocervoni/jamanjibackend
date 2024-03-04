@@ -46,7 +46,7 @@ public class DeliveryConverter {
     }
 
     public Delivery dtoRPut (DeliveryRArrivalNotes dto, Delivery oldVersion){
-        oldVersion.setExpected_arrival(dto.getExpected_arrival());
+        oldVersion.setExpected_arrival(dto.getDeliveryStartTime());
         oldVersion.setNotes(dto.getNotes());
         oldVersion.setPaymentMethod(dto.getPaymentMethod());
         return oldVersion;
