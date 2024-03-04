@@ -42,6 +42,6 @@ public class Rider {
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id")
-    private Rider restaurant;
+    private Restaurant restaurant;
 
 }
