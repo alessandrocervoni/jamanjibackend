@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +29,7 @@ public class RiderController {
     RestaurantRepository resRepo;
     
     @GetMapping("/riders/{rest_id}")
-    public List<RiderDtoName> getRider(@RequestParam Integer rest_id) {
+    public List<RiderDtoName> getRider(@PathVariable Integer rest_id) {
         Restaurant r = resRepo.findById(rest_id).get();
         List<RiderDtoName> allRiders = new ArrayList<RiderDtoName>();
         for(Rider rider : r.getRiders()){

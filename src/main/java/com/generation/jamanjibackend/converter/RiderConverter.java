@@ -13,7 +13,6 @@ public class RiderConverter {
                 .builder()
                 .id(r.getId())
                 .name(r.getName())
-                .isAvailable(r.isAvailable())
                 .deliveries(r.getDeliveries())
                 .build();
     }
