@@ -46,13 +46,9 @@ public class DeliveryConverter {
     }
 
     public Delivery dtoRPut (DeliveryRArrivalNotes dto, Delivery oldVersion){
-        if(dto.getExpected_arrival()!=null && dto.getNotes()!=null){
-            oldVersion.setExpected_arrival(dto.getExpected_arrival());
-            oldVersion.setNotes(dto.getNotes());
-        }
-        if(dto.getPaymentMethod()!=null){
-            oldVersion.setPaymentMethod(dto.getPaymentMethod());
-        }
-       return oldVersion;
+        oldVersion.setExpected_arrival(dto.getExpected_arrival());
+        oldVersion.setNotes(dto.getNotes());
+        oldVersion.setPaymentMethod(dto.getPaymentMethod());
+        return oldVersion;
     }
 }
