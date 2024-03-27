@@ -1,6 +1,6 @@
 package com.generation.jamanjibackend.dto.delivery;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +15,7 @@ import lombok.experimental.SuperBuilder;
 
 public class DeliveryDtoBase {
 
-    private LocalDate expected_arrival;
+    private LocalDateTime expected_arrival;
     private int distance;
     private String paymentMethod;
     private String notes;

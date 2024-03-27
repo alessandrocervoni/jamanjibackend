@@ -12,4 +12,5 @@ import lombok.experimental.SuperBuilder;
 public class DishtodeliveryDtoBase {
 
     private int quantity;
+    private double getPrice;
 }

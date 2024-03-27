@@ -1,7 +1,11 @@
+
 package com.generation.jamanjibackend.dto.user;
 
+import java.util.Set;
+
+import com.generation.jamanjibackend.entities.Delivery;
+
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -11,10 +15,9 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder
 
-public class UserDtoBase 
-{     
-    private String mail;
-    private String password;
-    private int positionX;
-    private int positionY;
+public class UserDtoWFull extends UserDtoBase
+{
+    private Integer id;
+    private Set<Delivery> deliveries;
 }
+
