@@ -18,13 +18,13 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder
 
-public class DeliveryDtoWFull extends DeliveryDtoBase{
-
+public class DeliveryDtoNew extends DeliveryDtoBase{
     private Integer id;
-    private User user;
     private Restaurant restaurant;
+    private User user;
     private Set<DishToDelivery> dishesDeliveries;
     public double dishesPrices;
     public double riderRevenue;
     public double totalPrice;
+    
 }

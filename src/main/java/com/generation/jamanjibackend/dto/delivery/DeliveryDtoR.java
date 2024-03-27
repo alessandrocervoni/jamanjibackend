@@ -1,14 +1,14 @@
 package com.generation.jamanjibackend.dto.delivery;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@SuperBuilder
 
 public class DeliveryDtoR extends DeliveryDtoBase{
 

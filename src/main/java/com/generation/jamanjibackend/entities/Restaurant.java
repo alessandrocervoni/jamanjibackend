@@ -1,5 +1,6 @@
 package com.generation.jamanjibackend.entities;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -18,14 +19,17 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
+
 public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,11 +49,35 @@ public class Restaurant {
     private String imgUrl;
     
     @JsonIgnore
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "menu_id")//1-1
+    @OneToOne(mappedBy = "restaurant", fetch = FetchType.EAGER)
     private Menu menu;
 
     @JsonIgnore
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
     private Set<Delivery> deliveries;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
+    private Set<Rider> riders;
+
+    public String isOpen() {
+        LocalDateTime now = LocalDateTime.now();
+        int currentHour = now.getHour();
+        int currentMinute = now.getMinute();
+    
+        boolean isOpen;
+    
+        if (closingHour < openingHour) {
+            isOpen = (currentHour > openingHour || (currentHour == openingHour && currentMinute >= 0)) ||
+                   (currentHour < closingHour || (currentHour == closingHour && currentMinute < 0));
+        } else {
+            isOpen = currentHour > openingHour && currentHour < closingHour ||
+                   (currentHour == openingHour && currentMinute >= 0) ||
+                   (currentHour == closingHour && currentMinute < 0);
+        }
+    
+        return isOpen ? "Aperto" : "Chiuso";
+    }
+
+    
 }

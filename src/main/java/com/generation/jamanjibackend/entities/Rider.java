@@ -4,43 +4,44 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Builder
+@Entity
+public class Rider {
 
-
-public class User 
-{   
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(unique=true)
-    private String mail;
-    private String password;
-    private int positionX;
-    private int positionY;
-
+    
+    private String name;
+    private boolean isAvailable;
 
     @JsonIgnore
-    @ToString.Exclude
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private Set<Delivery> deliveries;
+    @OneToMany(mappedBy = "rider", fetch = FetchType.EAGER)
+    private Set<Delivery> deliveries ;
     
+    @JsonIgnore
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
 
 }
