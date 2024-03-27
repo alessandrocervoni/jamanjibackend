@@ -1,12 +1,11 @@
 package com.generation.jamanjibackend.dto.dish;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.experimental.SuperBuilder;
+import lombok.Getter;
+import lombok.Setter;
 
-
-
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 
 public class DishDtoR extends DishDtoBase

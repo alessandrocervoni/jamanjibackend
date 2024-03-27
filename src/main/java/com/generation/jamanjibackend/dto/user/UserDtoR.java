@@ -2,10 +2,11 @@ package com.generation.jamanjibackend.dto.user;
 
 import lombok.AllArgsConstructor;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
    
 

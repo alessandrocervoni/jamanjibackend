@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.generation.jamanjibackend.entities.Restaurant;
-import com.generation.jamanjibackend.entities.User;
+// import com.generation.jamanjibackend.entities.Restaurant;
 import com.generation.jamanjibackend.repositories.RestaurantRepository;
 import com.generation.jamanjibackend.repositories.UserRepository;
 
@@ -25,7 +24,7 @@ class TestJ {
         // boolean res2 = rClosed.isOpen();
         // System.out.println(rOpen.isOpen()+ " "+ rClosed.isOpen());
 
-        Restaurant r = rRepo.findById(1).get();
+        // Restaurant r = rRepo.findById(1).get();
     }
 
 

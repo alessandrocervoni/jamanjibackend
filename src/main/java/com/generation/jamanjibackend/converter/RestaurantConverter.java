@@ -7,7 +7,6 @@ import com.generation.jamanjibackend.dto.restaurant.RestaurantDtoWDistance;
 import com.generation.jamanjibackend.dto.restaurant.RestaurantDtoWFull;
 import com.generation.jamanjibackend.dto.restaurant.RestaurantDtoWPitagora;
 import com.generation.jamanjibackend.entities.Restaurant;
-import com.generation.jamanjibackend.entities.User;
 import com.generation.jamanjibackend.repositories.RestaurantRepository;
 import com.generation.jamanjibackend.repositories.UserRepository;
 
